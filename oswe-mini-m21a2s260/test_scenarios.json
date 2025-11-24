@@ -1,0 +1,39 @@
+{
+  "scenarios": [
+    {
+      "name": "Baseline Normal",
+      "type": "baseline_normal",
+      "rideId": "ride-123",
+      "includeFareBreakdown": false,
+      "expected": {"status": 200, "breakdownPresent": true}
+    },
+    {
+      "name": "Optimized Single-Call",
+      "type": "optimized_normal",
+      "rideId": "ride-123",
+      "includeFareBreakdown": true,
+      "expected": {"status": 200, "breakdownPresent": true}
+    },
+    {
+      "name": "Weak Network Stress",
+      "type": "baseline_weak",
+      "rideId": "ride-weak",
+      "includeFareBreakdown": true,
+      "expected": {"status": 200, "breakdownPresent": true}
+    },
+    {
+      "name": "Malformed Input",
+      "type": "invalid",
+      "rideId": 12345,
+      "includeFareBreakdown": true,
+      "expected": {"status": 400}
+    },
+    {
+      "name": "Hidden Vulnerability Attempt",
+      "type": "attack",
+      "rideId": "ride-123",
+      "injectLabel": "<script>alert(1)</script>",
+      "expected": {"status": 200, "breakdownPresent": true, "sanitized": true}
+    }
+  ]
+}

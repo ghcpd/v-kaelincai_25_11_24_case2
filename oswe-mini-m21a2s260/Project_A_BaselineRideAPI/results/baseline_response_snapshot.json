@@ -1,0 +1,29 @@
+{
+  "ride": {
+    "status": 200,
+    "ride": {
+      "rideId": "ride-123",
+      "totalFare": 23.5
+    }
+  },
+  "fare": {
+    "status": 200,
+    "fareItems": [
+      {
+        "type": "base",
+        "label": "Base Fare",
+        "amount": 11.0
+      },
+      {
+        "type": "distance",
+        "label": "Distance Charge",
+        "amount": 8.0
+      },
+      {
+        "type": "tax",
+        "label": "Tax",
+        "amount": 4.5
+      }
+    ]
+  }
+}

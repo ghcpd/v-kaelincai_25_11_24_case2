@@ -1,0 +1,278 @@
+{
+  "summary": {
+    "total_scenarios": 6,
+    "passed": 6,
+    "failed": 0,
+    "average_latency_ms": 273.8333333333333,
+    "average_request_count": 1.0
+  },
+  "scenarios": [
+    {
+      "id": "normal_flow",
+      "name": "Normal flow with breakdown (baseline vs optimized)",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": "ok",
+        "data": {
+          "rideId": "ride_normal",
+          "totalFare": 23.5,
+          "currency": "USD",
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "Base Fare",
+              "amount": 5.0,
+              "currency": "USD"
+            },
+            {
+              "type": "distance",
+              "label": "Distance",
+              "amount": 10.5,
+              "currency": "USD"
+            },
+            {
+              "type": "time",
+              "label": "Time",
+              "amount": 3.0,
+              "currency": "USD"
+            },
+            {
+              "type": "surge",
+              "label": "Surge",
+              "amount": 2.5,
+              "currency": "USD"
+            },
+            {
+              "type": "fees",
+              "label": "Service Fee",
+              "amount": 2.5,
+              "currency": "USD"
+            }
+          ]
+        },
+        "error": null,
+        "metrics": {
+          "latency_ms": 180,
+          "request_count": 1,
+          "downstream_calls": 1,
+          "cache_hits": 1,
+          "invalid_items": [],
+          "mismatch_total": false,
+          "sum_breakdown": 23.5
+        }
+      },
+      "metrics": {
+        "total_latency_ms": 180,
+        "request_count": 1,
+        "downstream_calls": 1,
+        "sanitized": true
+      }
+    },
+    {
+      "id": "legacy_default",
+      "name": "Legacy default path (no breakdown)",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": "ok",
+        "data": {
+          "rideId": "ride_normal",
+          "totalFare": 23.5,
+          "currency": "USD"
+        },
+        "error": null,
+        "metrics": {
+          "latency_ms": 155,
+          "request_count": 1,
+          "downstream_calls": 1,
+          "cache_hits": 1
+        }
+      },
+      "metrics": {
+        "total_latency_ms": 155,
+        "request_count": 1,
+        "downstream_calls": 1,
+        "sanitized": true
+      }
+    },
+    {
+      "id": "weak_network",
+      "name": "Weak-network stress (high latency)",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": "ok",
+        "data": {
+          "rideId": "ride_weak_network",
+          "totalFare": 41.75,
+          "currency": "USD",
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "Base Fare",
+              "amount": 8.0,
+              "currency": "USD"
+            },
+            {
+              "type": "distance",
+              "label": "Distance",
+              "amount": 20.0,
+              "currency": "USD"
+            },
+            {
+              "type": "time",
+              "label": "Time",
+              "amount": 6.75,
+              "currency": "USD"
+            },
+            {
+              "type": "fees",
+              "label": "Service Fee",
+              "amount": 7.0,
+              "currency": "USD"
+            }
+          ]
+        },
+        "error": null,
+        "metrics": {
+          "latency_ms": 828,
+          "request_count": 1,
+          "downstream_calls": 1,
+          "cache_hits": 1,
+          "invalid_items": [],
+          "mismatch_total": false,
+          "sum_breakdown": 41.75
+        }
+      },
+      "metrics": {
+        "total_latency_ms": 828,
+        "request_count": 1,
+        "downstream_calls": 1,
+        "sanitized": true
+      }
+    },
+    {
+      "id": "malformed_ride_id",
+      "name": "Malformed ride ID",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": "error",
+        "error": "Invalid ride_id",
+        "data": null,
+        "metrics": {
+          "latency_ms": 120,
+          "request_count": 1,
+          "downstream_calls": 0
+        }
+      },
+      "metrics": {
+        "total_latency_ms": 120,
+        "request_count": 1,
+        "downstream_calls": 0,
+        "sanitized": true
+      }
+    },
+    {
+      "id": "hidden_vulnerability",
+      "name": "Hidden vulnerability in fare label",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": "ok",
+        "data": {
+          "rideId": "ride_hidden_vuln",
+          "totalFare": 19.99,
+          "currency": "USD",
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "alert(1)",
+              "amount": 10.0,
+              "currency": "USD"
+            },
+            {
+              "type": "distance",
+              "label": "Distance",
+              "amount": 9.99,
+              "currency": "USD"
+            }
+          ]
+        },
+        "error": null,
+        "metrics": {
+          "latency_ms": 180,
+          "request_count": 1,
+          "downstream_calls": 1,
+          "cache_hits": 1,
+          "invalid_items": [],
+          "mismatch_total": false,
+          "sum_breakdown": 19.99
+        }
+      },
+      "metrics": {
+        "total_latency_ms": 180,
+        "request_count": 1,
+        "downstream_calls": 1,
+        "sanitized": true
+      }
+    },
+    {
+      "id": "nested_breakdown",
+      "name": "Nested breakdown structure",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": "ok",
+        "data": {
+          "rideId": "ride_nested",
+          "totalFare": 18.0,
+          "currency": "USD",
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "Base",
+              "amount": 5.0,
+              "currency": "USD"
+            },
+            {
+              "type": "distance",
+              "label": "Distance",
+              "amount": 8.0,
+              "currency": "USD"
+            },
+            {
+              "type": "time",
+              "label": "Time",
+              "amount": 3.0,
+              "currency": "USD"
+            },
+            {
+              "type": "fees",
+              "label": "Service Fee",
+              "amount": 2.0,
+              "currency": "USD"
+            }
+          ]
+        },
+        "error": null,
+        "metrics": {
+          "latency_ms": 180,
+          "request_count": 1,
+          "downstream_calls": 1,
+          "cache_hits": 1,
+          "invalid_items": [],
+          "mismatch_total": false,
+          "sum_breakdown": 18.0
+        }
+      },
+      "metrics": {
+        "total_latency_ms": 180,
+        "request_count": 1,
+        "downstream_calls": 1,
+        "sanitized": true
+      }
+    }
+  ]
+}

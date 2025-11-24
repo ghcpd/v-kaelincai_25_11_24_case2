@@ -1,0 +1,87 @@
+{
+  "scenarios": [
+    {
+      "id": "normal_flow",
+      "name": "Normal flow with breakdown (baseline vs optimized)",
+      "projects": ["baseline", "optimized"],
+      "ride_id": "ride_normal",
+      "includeFareBreakdown": true,
+      "network": {"latency_ms": 120, "jitter_ms": 0},
+      "expectations": {
+        "status": "ok",
+        "totalFare": 23.5,
+        "breakdown_present": true
+      },
+      "edge_case_flags": []
+    },
+    {
+      "id": "legacy_default",
+      "name": "Legacy default path (no breakdown)",
+      "projects": ["optimized"],
+      "ride_id": "ride_normal",
+      "includeFareBreakdown": false,
+      "network": {"latency_ms": 120, "jitter_ms": 0},
+      "expectations": {
+        "status": "ok",
+        "totalFare": 23.5,
+        "breakdown_present": false
+      },
+      "edge_case_flags": ["backward_compat"]
+    },
+    {
+      "id": "weak_network",
+      "name": "Weak-network stress (high latency)",
+      "projects": ["baseline", "optimized"],
+      "ride_id": "ride_weak_network",
+      "includeFareBreakdown": true,
+      "network": {"latency_ms": 700, "jitter_ms": 100},
+      "expectations": {
+        "status": "ok",
+        "totalFare": 41.75,
+        "breakdown_present": true
+      },
+      "edge_case_flags": ["weak_network"]
+    },
+    {
+      "id": "malformed_ride_id",
+      "name": "Malformed ride ID",
+      "projects": ["baseline", "optimized"],
+      "ride_id": 12345,
+      "includeFareBreakdown": false,
+      "network": {"latency_ms": 120, "jitter_ms": 0},
+      "expectations": {
+        "status": "error",
+        "breakdown_present": false
+      },
+      "edge_case_flags": ["malformed_input"]
+    },
+    {
+      "id": "hidden_vulnerability",
+      "name": "Hidden vulnerability in fare label",
+      "projects": ["baseline", "optimized"],
+      "ride_id": "ride_hidden_vuln",
+      "includeFareBreakdown": true,
+      "network": {"latency_ms": 120, "jitter_ms": 0},
+      "expectations": {
+        "status": "ok",
+        "totalFare": 19.99,
+        "breakdown_present": true
+      },
+      "edge_case_flags": ["sanitization"]
+    },
+    {
+      "id": "nested_breakdown",
+      "name": "Nested breakdown structure",
+      "projects": ["optimized"],
+      "ride_id": "ride_nested",
+      "includeFareBreakdown": true,
+      "network": {"latency_ms": 120, "jitter_ms": 0},
+      "expectations": {
+        "status": "ok",
+        "totalFare": 18.0,
+        "breakdown_present": true
+      },
+      "edge_case_flags": ["nested_breakdown"]
+    }
+  ]
+}

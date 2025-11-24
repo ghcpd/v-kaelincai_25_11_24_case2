@@ -1,0 +1,17 @@
+# Local venv
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Logs/Results artifacts (kept empty via .gitkeep)
+
+!logs/.gitkeep
+
+!results/.gitkeep
+
+# Test caches
+.pytest_cache/
+.mypy_cache/

@@ -1,0 +1,60 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg-info/
+.eggs/
+.dist-info/
+dist/
+build/
+.eggs/
+*.log
+.mypy_cache/
+.pytest_cache/
+.coverage*
+.pytype/
+.dmypy.json
+.cache/
+.tox/
+.pip/
+.venv/
+.env/
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Project-specific virtualenvs
+Project_A_BaselineRideAPI/.venv/
+Project_B_OptimizedRideAPI/.venv/
+
+# Runtime artifacts (logs/results) – keep directories via .gitkeep
+
+!Project_A_BaselineRideAPI/logs/.gitkeep
+
+!Project_A_BaselineRideAPI/results/.gitkeep
+
+
+!Project_B_OptimizedRideAPI/logs/.gitkeep
+
+!Project_B_OptimizedRideAPI/results/.gitkeep
+
+# Root aggregated results
+
+!results/.gitkeep
+
+# Misc
+*.tmp
+*.bak
+*.orig
