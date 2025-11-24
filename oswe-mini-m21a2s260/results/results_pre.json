@@ -1,0 +1,67 @@
+{
+  "results": [
+    {
+      "scenario": "Baseline Normal",
+      "status": [
+        200,
+        200
+      ],
+      "latency": 0.1506950855255127,
+      "totalFare": 23.5,
+      "computedTotal": 23.5,
+      "breakdownPresent": true,
+      "pass": true
+    },
+    {
+      "scenario": "Optimized Single-Call",
+      "status": [
+        200,
+        200
+      ],
+      "latency": 0.14368772506713867,
+      "totalFare": 23.5,
+      "computedTotal": 23.5,
+      "breakdownPresent": true,
+      "pass": true
+    },
+    {
+      "scenario": "Weak Network Stress",
+      "status": [
+        200,
+        200
+      ],
+      "latency": 0.17568373680114746,
+      "totalFare": 10.0,
+      "computedTotal": 10.0,
+      "breakdownPresent": true,
+      "pass": true
+    },
+    {
+      "scenario": "Malformed Input",
+      "status": [
+        400,
+        400
+      ],
+      "latency": 0.1683182716369629,
+      "totalFare": null,
+      "computedTotal": 0,
+      "breakdownPresent": false,
+      "pass": true
+    },
+    {
+      "scenario": "Hidden Vulnerability Attempt",
+      "status": [
+        200,
+        200
+      ],
+      "latency": 0.14203906059265137,
+      "totalFare": 23.5,
+      "computedTotal": 23.5,
+      "breakdownPresent": true,
+      "pass": true
+    }
+  ],
+  "metrics": {
+    "downstream_calls": 5
+  }
+}
