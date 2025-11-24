@@ -1,0 +1,1 @@
+Project A - Baseline Ride API\n\nLegacy workflow requiring multiple endpoints:\n- GET /rides/{rideId} → returns only totalFare\n- GET /rides/{rideId}/fare-items → returns the breakdown\n\nRun tests: `./run_tests.sh` (Windows: `./run_tests.sh` works from Git Bash or WSL; for PowerShell use `bash run_tests.sh` or run tests via python runner).
