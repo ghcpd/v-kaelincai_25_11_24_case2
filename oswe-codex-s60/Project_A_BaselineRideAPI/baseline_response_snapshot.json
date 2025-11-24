@@ -1,0 +1,14 @@
+{
+  "status": "ok",
+  "error": null,
+  "data": {
+    "rideId": "ride_normal",
+    "totalFare": 23.5,
+    "currency": "USD"
+  },
+  "metrics": {
+    "latency_ms": 160,
+    "request_count": 1,
+    "downstream_calls": 1
+  }
+}

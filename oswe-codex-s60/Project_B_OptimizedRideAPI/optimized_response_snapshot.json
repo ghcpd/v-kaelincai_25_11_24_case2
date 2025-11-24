@@ -1,0 +1,50 @@
+{
+  "status": "ok",
+  "data": {
+    "rideId": "ride_normal",
+    "totalFare": 23.5,
+    "currency": "USD",
+    "fareBreakdown": [
+      {
+        "type": "base",
+        "label": "Base Fare",
+        "amount": 5.0,
+        "currency": "USD"
+      },
+      {
+        "type": "distance",
+        "label": "Distance",
+        "amount": 10.5,
+        "currency": "USD"
+      },
+      {
+        "type": "time",
+        "label": "Time",
+        "amount": 3.0,
+        "currency": "USD"
+      },
+      {
+        "type": "surge",
+        "label": "Surge",
+        "amount": 2.5,
+        "currency": "USD"
+      },
+      {
+        "type": "fees",
+        "label": "Service Fee",
+        "amount": 2.5,
+        "currency": "USD"
+      }
+    ]
+  },
+  "error": null,
+  "metrics": {
+    "latency_ms": 180,
+    "request_count": 1,
+    "downstream_calls": 1,
+    "cache_hits": 1,
+    "invalid_items": [],
+    "mismatch_total": false,
+    "sum_breakdown": 23.5
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "common_metrics": {
+    "matrix": [
+      [
+        "hidden_vulnerability",
+        true,
+        true
+      ],
+      [
+        "malformed_ride_id",
+        true,
+        true
+      ],
+      [
+        "normal_flow",
+        true,
+        true
+      ],
+      [
+        "weak_network",
+        true,
+        true
+      ]
+    ],
+    "avg_latency_delta_ms": 242.75,
+    "avg_request_count_delta": 0.75
+  },
+  "edge_metrics_opt": {
+    "edge_case_rate": 1.0,
+    "edge_case_details": [
+      [
+        "legacy_default",
+        [
+          "backward_compat"
+        ],
+        true
+      ],
+      [
+        "weak_network",
+        [
+          "weak_network"
+        ],
+        true
+      ],
+      [
+        "malformed_ride_id",
+        [
+          "malformed_input"
+        ],
+        true
+      ],
+      [
+        "hidden_vulnerability",
+        [
+          "sanitization"
+        ],
+        true
+      ],
+      [
+        "nested_breakdown",
+        [
+          "nested_breakdown"
+        ],
+        true
+      ]
+    ],
+    "edge_cases_total": 5
+  },
+  "breakdown_opt": {
+    "breakdown_cases": 4,
+    "mismatch_count": 0,
+    "sanitization_fail": 0
+  },
+  "baseline_summary": {
+    "total_scenarios": 4,
+    "passed": 4,
+    "failed": 0,
+    "average_latency_ms": 569.75,
+    "average_request_count": 1.75
+  },
+  "optimized_summary": {
+    "total_scenarios": 6,
+    "passed": 6,
+    "failed": 0,
+    "average_latency_ms": 273.8333333333333,
+    "average_request_count": 1.0
+  }
+}
