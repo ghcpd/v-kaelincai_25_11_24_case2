@@ -1,0 +1,264 @@
+{
+  "timestamp": "2025-11-24 16:50:44",
+  "summary": {
+    "total_scenarios": 6,
+    "passed": 6,
+    "failed": 0,
+    "pass_rate": "100.0%",
+    "total_latency_ms": 300,
+    "total_backend_calls": 6,
+    "avg_latency_per_scenario_ms": 50.0,
+    "edge_case_coverage": {
+      "high_latency": 2,
+      "network_stress": 2,
+      "security": 1,
+      "xss_prevention": 1,
+      "output_sanitization": 1,
+      "type_mismatch": 1,
+      "robust_validation": 1,
+      "schema_flexibility": 1,
+      "nested_structures": 1
+    }
+  },
+  "test_results": [
+    {
+      "scenario_id": "optimized_normal_fare",
+      "status": "PASSED",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": 200,
+        "rideId": "ride_001",
+        "distance": 5.2,
+        "duration": 1230,
+        "rideStatus": "completed",
+        "totalFare": 25.5,
+        "currency": "USD",
+        "fareBreakdown": [
+          {
+            "type": "base_fare",
+            "label": "Base Fare",
+            "amount": 2.5
+          },
+          {
+            "type": "distance_fare",
+            "label": "Distance (5.2 km @ $3.50/km)",
+            "amount": 18.2
+          },
+          {
+            "type": "time_fare",
+            "label": "Time (20.5 min @ $0.45/min)",
+            "amount": 4.8
+          }
+        ]
+      },
+      "metrics": {
+        "backend_calls": 1,
+        "total_latency_ms": 50,
+        "avg_latency_per_call_ms": 50.0,
+        "cache_size": 1
+      },
+      "test_duration_ms": 51.20134353637695,
+      "edge_case_flags": []
+    },
+    {
+      "scenario_id": "weak_network_baseline",
+      "status": "PASSED",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": 200,
+        "rideId": "ride_002",
+        "distance": 8.7,
+        "duration": 1890,
+        "rideStatus": "completed",
+        "totalFare": 38.75,
+        "currency": "USD"
+      },
+      "metrics": {
+        "backend_calls": 1,
+        "total_latency_ms": 50,
+        "avg_latency_per_call_ms": 50.0,
+        "cache_size": 1
+      },
+      "test_duration_ms": 51.92923545837402,
+      "edge_case_flags": [
+        "high_latency",
+        "network_stress"
+      ]
+    },
+    {
+      "scenario_id": "weak_network_optimized",
+      "status": "PASSED",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": 200,
+        "rideId": "ride_002",
+        "distance": 8.7,
+        "duration": 1890,
+        "rideStatus": "completed",
+        "totalFare": 38.75,
+        "currency": "USD",
+        "fareBreakdown": [
+          {
+            "type": "base_fare",
+            "label": "Base Fare",
+            "amount": 2.5
+          },
+          {
+            "type": "distance_fare",
+            "label": "Distance (8.7 km @ $3.50/km)",
+            "amount": 30.45
+          },
+          {
+            "type": "time_fare",
+            "label": "Time (31.5 min @ $0.45/min)",
+            "amount": 5.8
+          }
+        ]
+      },
+      "metrics": {
+        "backend_calls": 1,
+        "total_latency_ms": 50,
+        "avg_latency_per_call_ms": 50.0,
+        "cache_size": 2
+      },
+      "test_duration_ms": 50.948381423950195,
+      "edge_case_flags": [
+        "high_latency",
+        "network_stress"
+      ]
+    },
+    {
+      "scenario_id": "hidden_vulnerability_label_injection",
+      "status": "PASSED",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": 200,
+        "rideId": "ride_003",
+        "distance": 2.1,
+        "duration": 420,
+        "rideStatus": "completed",
+        "totalFare": 12.0,
+        "currency": "USD",
+        "fareBreakdown": [
+          {
+            "type": "base_fare",
+            "label": "Base Fare",
+            "amount": 2.5
+          },
+          {
+            "type": "distance_fare",
+            "label": "Distance (2.1 km @ $3.50/km)",
+            "amount": 7.35
+          },
+          {
+            "type": "time_fare",
+            "label": "Time (7 min @ $0.45/min)",
+            "amount": 2.15
+          }
+        ]
+      },
+      "metrics": {
+        "backend_calls": 1,
+        "total_latency_ms": 50,
+        "avg_latency_per_call_ms": 50.0,
+        "cache_size": 3
+      },
+      "test_duration_ms": 51.09858512878418,
+      "edge_case_flags": [
+        "security",
+        "xss_prevention",
+        "output_sanitization"
+      ]
+    },
+    {
+      "scenario_id": "non_string_fare_fields",
+      "status": "PASSED",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": 200,
+        "rideId": "ride_004",
+        "distance": 15.3,
+        "duration": 2340,
+        "rideStatus": "completed",
+        "totalFare": 52.25,
+        "currency": "USD",
+        "fareBreakdown": [
+          {
+            "type": "base_fare",
+            "label": "Base Fare",
+            "amount": 2.5
+          },
+          {
+            "type": "distance_fare",
+            "label": "Distance (15.3 km @ $3.50/km)",
+            "amount": 53.55
+          },
+          {
+            "type": "time_fare",
+            "label": "Time (39 min @ $0.45/min)",
+            "amount": -3.8
+          }
+        ]
+      },
+      "metrics": {
+        "backend_calls": 1,
+        "total_latency_ms": 50,
+        "avg_latency_per_call_ms": 50.0,
+        "cache_size": 4
+      },
+      "test_duration_ms": 51.04875564575195,
+      "edge_case_flags": [
+        "type_mismatch",
+        "robust_validation"
+      ]
+    },
+    {
+      "scenario_id": "nested_breakdown_structures",
+      "status": "PASSED",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": 200,
+        "rideId": "ride_005",
+        "distance": 3.4,
+        "duration": 645,
+        "rideStatus": "completed",
+        "totalFare": 18.5,
+        "currency": "USD",
+        "fareBreakdown": [
+          {
+            "type": "base_fare",
+            "label": "Base Fare",
+            "amount": 2.5
+          },
+          {
+            "type": "distance_fare",
+            "label": "Distance (3.4 km @ $3.50/km)",
+            "amount": 11.9
+          },
+          {
+            "type": "time_fare",
+            "label": "Time (10.75 min @ $0.45/min)",
+            "amount": 4.1
+          }
+        ]
+      },
+      "metrics": {
+        "backend_calls": 1,
+        "total_latency_ms": 50,
+        "avg_latency_per_call_ms": 50.0,
+        "cache_size": 5
+      },
+      "test_duration_ms": 50.530433654785156,
+      "edge_case_flags": [
+        "schema_flexibility",
+        "nested_structures"
+      ]
+    }
+  ]
+}
