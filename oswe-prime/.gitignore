@@ -1,0 +1,38 @@
+# Workspace-level gitignore
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.mypy_cache/
+.pytest_cache/
+pip-wheel-metadata/
+build/
+dist/
+*.egg-info/
+
+# Virtualenvs
+.venv/
+venv/
+env/
+ENV/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+
+# IDEs
+.vscode/
+.idea/
+
+# Archives and misc
+*.zip
+*.tar.gz
+*.log
+
+# PowerShell history
+*.ps1xml
+
+

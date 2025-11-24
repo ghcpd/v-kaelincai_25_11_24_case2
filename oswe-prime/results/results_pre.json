@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "scenario_id": "baseline_normal",
+      "start": 1763963926.946872,
+      "status": 200,
+      "totalFare": 42.5,
+      "fareBreakdownPresent": false,
+      "requestCount": 2,
+      "latency": 0.4006715000141412,
+      "expected": {
+        "status": 200,
+        "totalFare": 42.5,
+        "fareBreakdownPresent": false
+      },
+      "passed": true
+    },
+    {
+      "scenario_id": "weak_network",
+      "start": 1763963927.348623,
+      "status": 200,
+      "totalFare": 13.2,
+      "fareBreakdownPresent": false,
+      "requestCount": 2,
+      "latency": 1.600309900008142,
+      "expected": {
+        "status": 200,
+        "totalFare": 13.2,
+        "fareBreakdownPresentBaseline": false,
+        "fareBreakdownPresentOptimized": true
+      },
+      "passed": true
+    },
+    {
+      "scenario_id": "malformed_ride_id",
+      "start": 1763963928.9497871,
+      "status": 400,
+      "error": "Invalid rideId",
+      "requestCount": 1,
+      "latency": 1.090002479031682e-05,
+      "expected": {
+        "status": 400,
+        "error": "Invalid rideId"
+      },
+      "passed": true
+    }
+  ]
+}

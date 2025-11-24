@@ -1,0 +1,82 @@
+{
+  "scenarios": [
+    {
+      "id": "baseline_normal",
+      "description": "Baseline normal flow: separate endpoints used to retrieve ride and fare items",
+      "rideId": "ride_001",
+      "simulate_latency_ms": 200,
+      "flow": "baseline",
+      "expect": {
+        "status": 200,
+        "totalFare": 42.5,
+        "fareBreakdownPresent": false
+      }
+    },
+    {
+      "id": "optimized_normal",
+      "description": "Optimized flow: includeFareBreakdown param returns breakdown in one call",
+      "rideId": "ride_001",
+      "simulate_latency_ms": 200,
+      "flow": "optimized",
+      "expect": {
+        "status": 200,
+        "totalFare": 42.5,
+        "fareBreakdownPresent": true
+      }
+    },
+    {
+      "id": "weak_network",
+      "description": "Weak network increases latency; verify optimized reduces round trips",
+      "rideId": "ride_002",
+      "simulate_latency_ms": 800,
+      "flow": "compare",
+      "expect": {
+        "status": 200,
+        "totalFare": 13.2,
+        "fareBreakdownPresentBaseline": false,
+        "fareBreakdownPresentOptimized": true
+      }
+    },
+    {
+      "id": "malformed_ride_id",
+      "description": "Malformed ride id should be handled gracefully",
+      "rideId": 12345,
+      "simulate_latency_ms": 0,
+      "flow": "compare",
+      "expect": {
+        "status": 400,
+        "error": "Invalid rideId"
+      }
+    },
+    {
+      "id": "hidden_vuln_label",
+      "description": "Attempt to inject HTML/JS in labels should be sanitized",
+      "rideId": "ride_injection",
+      "simulate_latency_ms": 100,
+      "flow": "optimized",
+      "expect": {
+        "status": 200,
+        "totalFare": 15.0,
+        "fareBreakdownPresent": true,
+        "labelsSanitized": true
+      }
+    }
+    ,
+    {
+      "id": "nested_breakdown",
+      "description": "Nested breakdown arrays should be flattened and validated",
+      "rideId": "ride_nested",
+      "simulate_latency_ms": 100,
+      "flow": "optimized",
+      "expect": {"status": 200, "totalFare": 20.0, "fareBreakdownPresent": true}
+    },
+    {
+      "id": "string_amounts",
+      "description": "Amounts provided as strings should be parsed and validated",
+      "rideId": "ride_string_amount",
+      "simulate_latency_ms": 100,
+      "flow": "optimized",
+      "expect": {"status": 200, "totalFare": 12.5, "fareBreakdownPresent": true}
+    }
+  ]
+}
