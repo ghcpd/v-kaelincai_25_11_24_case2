@@ -1,0 +1,30 @@
+[2025-11-24 16:55:41.932] ============================================================
+[2025-11-24 16:55:41.932] PROJECT A - BASELINE RIDE API TEST SUITE
+[2025-11-24 16:55:41.932] ============================================================
+[2025-11-24 16:55:41.934] 
+Loaded 1 test scenarios for Project A
+[2025-11-24 16:55:41.936] 
+============================================================
+[2025-11-24 16:55:41.936] Running scenario: baseline_normal
+[2025-11-24 16:55:41.936] Description: Baseline legacy API - normal ride with separate fare breakdown call
+[2025-11-24 16:55:41.936] ============================================================
+[2025-11-24 16:55:41.936] Calling get_complete_ride_info for ride_id: ride_12345
+[2025-11-24 16:55:42.288] ✓ Test PASSED - Total fare: $25.5, Requests: 2, Latency: 352.67ms
+[2025-11-24 16:55:42.288] 
+============================================================
+[2025-11-24 16:55:42.288] TEST SUMMARY - PROJECT A (BASELINE)
+[2025-11-24 16:55:42.288] ============================================================
+[2025-11-24 16:55:42.288] Total scenarios: 1
+[2025-11-24 16:55:42.288] Passed: 1
+[2025-11-24 16:55:42.288] Failed: 0
+[2025-11-24 16:55:42.288] Success rate: 100.0%
+[2025-11-24 16:55:42.288] Total execution time: 0.35s
+[2025-11-24 16:55:42.288] 
+Performance Metrics (Baseline):
+[2025-11-24 16:55:42.292]   Average latency: 352.67ms
+[2025-11-24 16:55:42.292]   Average requests per operation: 2.00
+[2025-11-24 16:55:42.292]   Multiple round trips required: YES (Legacy limitation)
+[2025-11-24 16:55:42.293]   Inline fare breakdown support: NO
+[2025-11-24 16:55:42.293] ============================================================
+
+[2025-11-24 16:55:42.294] Results saved to: C:\GenAI\Bug_Bash\25_11_24_case2_kealin\Claude-Sonnet-4.5\v-kaelincai_25_11_24_case2\Project_A_BaselineRideAPI\tests\..\results\results_baseline.json

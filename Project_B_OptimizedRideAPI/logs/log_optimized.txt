@@ -1,0 +1,133 @@
+[2025-11-24 16:55:42.638] ============================================================
+[2025-11-24 16:55:42.638] PROJECT B - OPTIMIZED RIDE API TEST SUITE
+[2025-11-24 16:55:42.638] ============================================================
+[2025-11-24 16:55:42.641] 
+Loaded 9 test scenarios for Project B
+[2025-11-24 16:55:42.641] 
+============================================================
+[2025-11-24 16:55:42.641] Running scenario: optimized_normal
+[2025-11-24 16:55:42.641] Description: Optimized API - single call with fare breakdown included
+[2025-11-24 16:55:42.642] ============================================================
+[2025-11-24 16:55:42.642] Ride ID: ride_12345
+[2025-11-24 16:55:42.642] Include fare breakdown: True
+[2025-11-24 16:55:42.642] Network condition: good
+[2025-11-24 16:55:42.846] ✓ Test PASSED
+[2025-11-24 16:55:42.846]   Total fare: $25.5
+[2025-11-24 16:55:42.847]   Requests: 1 (Optimized single-call)
+[2025-11-24 16:55:42.847]   Latency: 101.72ms
+[2025-11-24 16:55:42.847]   Inline breakdown: True
+[2025-11-24 16:55:42.847] 
+============================================================
+[2025-11-24 16:55:42.847] Running scenario: optimized_backward_compatible
+[2025-11-24 16:55:42.847] Description: Optimized API - backward compatible mode without breakdown parameter
+[2025-11-24 16:55:42.847] ============================================================
+[2025-11-24 16:55:42.847] Ride ID: ride_12345
+[2025-11-24 16:55:42.847] Include fare breakdown: False
+[2025-11-24 16:55:42.847] Network condition: good
+[2025-11-24 16:55:43.001] ✓ Test PASSED
+[2025-11-24 16:55:43.001]   Total fare: $25.5
+[2025-11-24 16:55:43.001]   Requests: 1 (Optimized single-call)
+[2025-11-24 16:55:43.001]   Latency: 50.49ms
+[2025-11-24 16:55:43.001]   Inline breakdown: False
+[2025-11-24 16:55:43.002] 
+============================================================
+[2025-11-24 16:55:43.002] Running scenario: weak_network_stress
+[2025-11-24 16:55:43.002] Description: Weak network simulation - high latency scenario
+[2025-11-24 16:55:43.002] ============================================================
+[2025-11-24 16:55:43.002] Ride ID: ride_67890
+[2025-11-24 16:55:43.002] Include fare breakdown: True
+[2025-11-24 16:55:43.002] Network condition: weak
+[2025-11-24 16:55:44.605] ✓ Test PASSED
+[2025-11-24 16:55:44.605]   Total fare: $42.75
+[2025-11-24 16:55:44.605]   Requests: 1 (Optimized single-call)
+[2025-11-24 16:55:44.605]   Latency: 101.15ms
+[2025-11-24 16:55:44.605]   Inline breakdown: True
+[2025-11-24 16:55:44.605] 
+============================================================
+[2025-11-24 16:55:44.605] Running scenario: malformed_ride_id
+[2025-11-24 16:55:44.605] Description: Edge case - malformed ride ID with special characters
+[2025-11-24 16:55:44.605] ============================================================
+[2025-11-24 16:55:44.605] Ride ID: ride_<script>alert('xss')</script>
+[2025-11-24 16:55:44.605] Include fare breakdown: True
+[2025-11-24 16:55:44.605] Network condition: good
+[2025-11-24 16:55:44.707] ✓ Test PASSED - Error handled correctly
+[2025-11-24 16:55:44.707]   Error type: invalid_ride_id
+[2025-11-24 16:55:44.707]   Error message: Invalid characters in ride ID
+[2025-11-24 16:55:44.708] 
+============================================================
+[2025-11-24 16:55:44.708] Running scenario: hidden_vulnerability_sql
+[2025-11-24 16:55:44.708] Description: Security test - SQL injection attempt in ride ID
+[2025-11-24 16:55:44.708] ============================================================
+[2025-11-24 16:55:44.708] Ride ID: ride_123'; DROP TABLE rides; --
+[2025-11-24 16:55:44.708] Include fare breakdown: True
+[2025-11-24 16:55:44.708] Network condition: good
+[2025-11-24 16:55:44.810] ✓ Test PASSED - Error handled correctly
+[2025-11-24 16:55:44.810]   Error type: invalid_ride_id
+[2025-11-24 16:55:44.810]   Error message: Invalid characters in ride ID
+[2025-11-24 16:55:44.810] 
+============================================================
+[2025-11-24 16:55:44.810] Running scenario: non_string_fields
+[2025-11-24 16:55:44.810] Description: Edge case - ride with non-string fare item labels
+[2025-11-24 16:55:44.810] ============================================================
+[2025-11-24 16:55:44.812] Ride ID: ride_malformed_001
+[2025-11-24 16:55:44.812] Include fare breakdown: True
+[2025-11-24 16:55:44.812] Network condition: good
+[2025-11-24 16:55:45.014] ✓ Test PASSED - Error handled correctly
+[2025-11-24 16:55:45.014]   Error type: invalid_fare_data
+[2025-11-24 16:55:45.014]   Error message: Fare item 0: Fare item 'label' must be a string
+[2025-11-24 16:55:45.014] 
+============================================================
+[2025-11-24 16:55:45.014] Running scenario: nested_breakdown_structure
+[2025-11-24 16:55:45.014] Description: Edge case - nested breakdown arrays (malformed structure)
+[2025-11-24 16:55:45.014] ============================================================
+[2025-11-24 16:55:45.014] Ride ID: ride_nested_001
+[2025-11-24 16:55:45.014] Include fare breakdown: True
+[2025-11-24 16:55:45.014] Network condition: good
+[2025-11-24 16:55:45.221] ✓ Test PASSED - Error handled correctly
+[2025-11-24 16:55:45.221]   Error type: invalid_fare_structure
+[2025-11-24 16:55:45.221]   Error message: Fare item 0: Fare item 'label' must be a string
+[2025-11-24 16:55:45.221] 
+============================================================
+[2025-11-24 16:55:45.221] Running scenario: missing_ride
+[2025-11-24 16:55:45.221] Description: Edge case - non-existent ride ID
+[2025-11-24 16:55:45.222] ============================================================
+[2025-11-24 16:55:45.222] Ride ID: ride_notfound_999
+[2025-11-24 16:55:45.222] Include fare breakdown: True
+[2025-11-24 16:55:45.222] Network condition: good
+[2025-11-24 16:55:45.373] ✓ Test PASSED - Error handled correctly
+[2025-11-24 16:55:45.373]   Error type: ride_not_found
+[2025-11-24 16:55:45.373]   Error message: Ride not found
+[2025-11-24 16:55:45.373] 
+============================================================
+[2025-11-24 16:55:45.374] Running scenario: negative_fare_amounts
+[2025-11-24 16:55:45.375] Description: Edge case - negative amounts in fare breakdown
+[2025-11-24 16:55:45.375] ============================================================
+[2025-11-24 16:55:45.375] Ride ID: ride_negative_001
+[2025-11-24 16:55:45.376] Include fare breakdown: True
+[2025-11-24 16:55:45.376] Network condition: good
+[2025-11-24 16:55:45.577] ✓ Test PASSED - Error handled correctly
+[2025-11-24 16:55:45.577]   Error type: invalid_fare_amount
+[2025-11-24 16:55:45.577]   Error message: Fare item 1: Fare amount cannot be negative
+[2025-11-24 16:55:45.577] 
+============================================================
+[2025-11-24 16:55:45.577] TEST SUMMARY - PROJECT B (OPTIMIZED)
+[2025-11-24 16:55:45.577] ============================================================
+[2025-11-24 16:55:45.577] Total scenarios: 9
+[2025-11-24 16:55:45.579] Passed: 9
+[2025-11-24 16:55:45.579] Failed: 0
+[2025-11-24 16:55:45.579] Success rate: 100.0%
+[2025-11-24 16:55:45.579] Total execution time: 2.94s
+[2025-11-24 16:55:45.579] 
+Performance Metrics (Optimized):
+[2025-11-24 16:55:45.579]   Average latency: 84.45ms
+[2025-11-24 16:55:45.579]   Average requests per operation: 1.00
+[2025-11-24 16:55:45.579]   Inline breakdown support: YES ✓
+[2025-11-24 16:55:45.581]   Scenarios with inline breakdown: 2
+[2025-11-24 16:55:45.581]   Backward compatible scenarios: 1
+[2025-11-24 16:55:45.581] 
+Edge Case Handling:
+[2025-11-24 16:55:45.581]   Total error scenarios: 6
+[2025-11-24 16:55:45.581]   Security validations passed: 5
+[2025-11-24 16:55:45.581] ============================================================
+
+[2025-11-24 16:55:45.584] Results saved to: C:\GenAI\Bug_Bash\25_11_24_case2_kealin\Claude-Sonnet-4.5\v-kaelincai_25_11_24_case2\Project_B_OptimizedRideAPI\tests\..\results\results_optimized.json

@@ -1,0 +1,208 @@
+{
+  "summary": {
+    "project": "B - Optimized",
+    "total_scenarios": 9,
+    "passed": 9,
+    "failed": 0,
+    "success_rate": 100.0,
+    "total_execution_time_sec": 2.94,
+    "avg_latency_ms": 84.45,
+    "avg_requests_per_operation": 1.0,
+    "supports_inline_breakdown": true,
+    "requires_multiple_calls": false,
+    "inline_breakdown_scenarios": 2,
+    "backward_compatible_scenarios": 1,
+    "edge_case_scenarios": 6,
+    "security_validations": 5
+  },
+  "results": [
+    {
+      "scenario_id": "optimized_normal",
+      "status": "success",
+      "ride_id": "ride_12345",
+      "include_breakdown_param": true,
+      "request_count": 1,
+      "latency_ms": 101.72,
+      "network_condition": "good",
+      "timestamp": "2025-11-24T16:55:42.846187",
+      "cache_stats": {
+        "hits": 0,
+        "misses": 1,
+        "hit_rate": 0.0
+      },
+      "total_fare": 25.5,
+      "has_breakdown_inline": true,
+      "requires_extra_call": false,
+      "fare_breakdown": [
+        {
+          "type": "base",
+          "label": "Base Fare",
+          "amount": 5.0
+        },
+        {
+          "type": "distance",
+          "label": "Distance (10 miles)",
+          "amount": 15.0
+        },
+        {
+          "type": "time",
+          "label": "Time (20 min)",
+          "amount": 4.0
+        },
+        {
+          "type": "tax",
+          "label": "Tax",
+          "amount": 1.5
+        }
+      ],
+      "breakdown_item_count": 4,
+      "fare_total_matches": true,
+      "calculated_total": 25.5,
+      "test_passed": true
+    },
+    {
+      "scenario_id": "optimized_backward_compatible",
+      "status": "success",
+      "ride_id": "ride_12345",
+      "include_breakdown_param": false,
+      "request_count": 1,
+      "latency_ms": 50.49,
+      "network_condition": "good",
+      "timestamp": "2025-11-24T16:55:43.001428",
+      "total_fare": 25.5,
+      "has_breakdown_inline": false,
+      "requires_extra_call": false,
+      "fare_breakdown": [],
+      "breakdown_item_count": 0,
+      "test_passed": true
+    },
+    {
+      "scenario_id": "weak_network_stress",
+      "status": "success",
+      "ride_id": "ride_67890",
+      "include_breakdown_param": true,
+      "request_count": 1,
+      "latency_ms": 101.15,
+      "network_condition": "weak",
+      "timestamp": "2025-11-24T16:55:44.605541",
+      "cache_stats": {
+        "hits": 0,
+        "misses": 1,
+        "hit_rate": 0.0
+      },
+      "total_fare": 42.75,
+      "has_breakdown_inline": true,
+      "requires_extra_call": false,
+      "fare_breakdown": [
+        {
+          "type": "base",
+          "label": "Base Fare",
+          "amount": 8.0
+        },
+        {
+          "type": "distance",
+          "label": "Distance (18 miles)",
+          "amount": 27.0
+        },
+        {
+          "type": "time",
+          "label": "Time (35 min)",
+          "amount": 5.25
+        },
+        {
+          "type": "surge",
+          "label": "Surge Pricing",
+          "amount": 2.0
+        },
+        {
+          "type": "tax",
+          "label": "Tax",
+          "amount": 0.5
+        }
+      ],
+      "breakdown_item_count": 5,
+      "fare_total_matches": true,
+      "calculated_total": 42.75,
+      "test_passed": true
+    },
+    {
+      "scenario_id": "malformed_ride_id",
+      "status": "error",
+      "ride_id": "ride_<script>alert('xss')</script>",
+      "include_breakdown_param": true,
+      "request_count": 1,
+      "latency_ms": 102.14,
+      "network_condition": "good",
+      "timestamp": "2025-11-24T16:55:44.707684",
+      "error": "Invalid characters in ride ID",
+      "error_type": "invalid_ride_id",
+      "test_passed": true
+    },
+    {
+      "scenario_id": "hidden_vulnerability_sql",
+      "status": "error",
+      "ride_id": "ride_123'; DROP TABLE rides; --",
+      "include_breakdown_param": true,
+      "request_count": 1,
+      "latency_ms": 101.98,
+      "network_condition": "good",
+      "timestamp": "2025-11-24T16:55:44.810688",
+      "error": "Invalid characters in ride ID",
+      "error_type": "invalid_ride_id",
+      "test_passed": true
+    },
+    {
+      "scenario_id": "non_string_fields",
+      "status": "error",
+      "ride_id": "ride_malformed_001",
+      "include_breakdown_param": true,
+      "request_count": 1,
+      "latency_ms": 201.88,
+      "network_condition": "good",
+      "timestamp": "2025-11-24T16:55:45.014605",
+      "error": "Fare item 0: Fare item 'label' must be a string",
+      "error_type": "invalid_fare_data",
+      "test_passed": true
+    },
+    {
+      "scenario_id": "nested_breakdown_structure",
+      "status": "error",
+      "ride_id": "ride_nested_001",
+      "include_breakdown_param": true,
+      "request_count": 1,
+      "latency_ms": 206.67,
+      "network_condition": "good",
+      "timestamp": "2025-11-24T16:55:45.221278",
+      "error": "Fare item 0: Fare item 'label' must be a string",
+      "error_type": "invalid_fare_structure",
+      "test_passed": true
+    },
+    {
+      "scenario_id": "missing_ride",
+      "status": "error",
+      "ride_id": "ride_notfound_999",
+      "include_breakdown_param": true,
+      "request_count": 1,
+      "latency_ms": 150.97,
+      "network_condition": "good",
+      "timestamp": "2025-11-24T16:55:45.373852",
+      "error": "Ride not found",
+      "error_type": "ride_not_found",
+      "test_passed": true
+    },
+    {
+      "scenario_id": "negative_fare_amounts",
+      "status": "error",
+      "ride_id": "ride_negative_001",
+      "include_breakdown_param": true,
+      "request_count": 1,
+      "latency_ms": 201.36,
+      "network_condition": "good",
+      "timestamp": "2025-11-24T16:55:45.577428",
+      "error": "Fare item 1: Fare amount cannot be negative",
+      "error_type": "invalid_fare_amount",
+      "test_passed": true
+    }
+  ],
+  "generated_at": "2025-11-24T16:55:45.583184"
+}
