@@ -1,0 +1,50 @@
+{
+  "description": "Baseline API response structure - requires 2 separate calls",
+  "call_1_get_ride": {
+    "endpoint": "GET /rides/{rideId}",
+    "response": {
+      "status": "success",
+      "data": {
+        "ride_id": "ride_12345",
+        "total_fare": 25.5,
+        "note": "No fare breakdown included - client must make second call"
+      }
+    }
+  },
+  "call_2_get_fare_items": {
+    "endpoint": "GET /rides/{rideId}/fare-items",
+    "response": {
+      "status": "success",
+      "data": {
+        "ride_id": "ride_12345",
+        "fare_breakdown": [
+          {
+            "type": "base",
+            "label": "Base Fare",
+            "amount": 5.0
+          },
+          {
+            "type": "distance",
+            "label": "Distance (10 miles)",
+            "amount": 15.0
+          },
+          {
+            "type": "time",
+            "label": "Time (20 min)",
+            "amount": 4.0
+          },
+          {
+            "type": "tax",
+            "label": "Tax",
+            "amount": 1.5
+          }
+        ]
+      }
+    }
+  },
+  "performance_impact": {
+    "total_requests": 2,
+    "total_latency_ms": 352.67,
+    "notes": "Each request includes network latency + processing time"
+  }
+}

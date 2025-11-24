@@ -1,0 +1,4 @@
+# Project A - Baseline Ride API
+
+## No external dependencies required
+# Using only Python standard library

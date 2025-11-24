@@ -1,0 +1,52 @@
+{
+  "description": "Optimized API response structure - single call with optional breakdown",
+  "call_with_breakdown": {
+    "endpoint": "GET /rides/{rideId}?includeFareBreakdown=true",
+    "response": {
+      "status": "success",
+      "data": {
+        "ride_id": "ride_12345",
+        "total_fare": 25.5,
+        "fare_breakdown": [
+          {
+            "type": "base",
+            "label": "Base Fare",
+            "amount": 5.0
+          },
+          {
+            "type": "distance",
+            "label": "Distance (10 miles)",
+            "amount": 15.0
+          },
+          {
+            "type": "time",
+            "label": "Time (20 min)",
+            "amount": 4.0
+          },
+          {
+            "type": "tax",
+            "label": "Tax",
+            "amount": 1.5
+          }
+        ],
+        "note": "Complete information in single call!"
+      }
+    }
+  },
+  "call_without_breakdown": {
+    "endpoint": "GET /rides/{rideId}",
+    "response": {
+      "status": "success",
+      "data": {
+        "ride_id": "ride_12345",
+        "total_fare": 25.5,
+        "note": "Backward compatible - no breakdown when not requested"
+      }
+    }
+  },
+  "performance_improvement": {
+    "requests_required": 1,
+    "latency_ms": 101.72,
+    "comparison_to_baseline": "50% reduction in requests (2 \u2192 1)"
+  }
+}

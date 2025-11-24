@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "project": "A - Baseline",
+    "total_scenarios": 1,
+    "passed": 1,
+    "failed": 0,
+    "success_rate": 100.0,
+    "total_execution_time_sec": 0.35,
+    "avg_latency_ms": 352.67,
+    "avg_requests_per_operation": 2.0,
+    "supports_inline_breakdown": false,
+    "requires_multiple_calls": true
+  },
+  "results": [
+    {
+      "scenario_id": "baseline_normal",
+      "status": "success",
+      "ride_id": "ride_12345",
+      "request_count": 2,
+      "latency_ms": 352.67,
+      "network_condition": "good",
+      "timestamp": "2025-11-24T16:55:42.288675",
+      "total_fare": 25.5,
+      "has_breakdown_inline": false,
+      "requires_extra_call": true,
+      "fare_breakdown": [
+        {
+          "type": "base",
+          "label": "Base Fare",
+          "amount": 5.0
+        },
+        {
+          "type": "distance",
+          "label": "Distance (10 miles)",
+          "amount": 15.0
+        },
+        {
+          "type": "time",
+          "label": "Time (20 min)",
+          "amount": 4.0
+        },
+        {
+          "type": "tax",
+          "label": "Tax",
+          "amount": 1.5
+        }
+      ],
+      "breakdown_item_count": 4,
+      "fare_total_matches": true,
+      "calculated_total": 25.5,
+      "test_passed": true
+    }
+  ],
+  "generated_at": "2025-11-24T16:55:42.293611"
+}

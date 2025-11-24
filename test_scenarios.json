@@ -1,0 +1,162 @@
+{
+  "scenarios": [
+    {
+      "id": "baseline_normal",
+      "description": "Baseline legacy API - normal ride with separate fare breakdown call",
+      "project": "A",
+      "ride_id": "ride_12345",
+      "include_fare_breakdown": false,
+      "network_condition": "good",
+      "expected": {
+        "status": "success",
+        "total_fare": 25.50,
+        "has_breakdown_inline": false,
+        "requires_extra_call": true,
+        "expected_requests": 2,
+        "fare_items": [
+          {"type": "base", "label": "Base Fare", "amount": 5.00},
+          {"type": "distance", "label": "Distance (10 miles)", "amount": 15.00},
+          {"type": "time", "label": "Time (20 min)", "amount": 4.00},
+          {"type": "tax", "label": "Tax", "amount": 1.50}
+        ]
+      }
+    },
+    {
+      "id": "optimized_normal",
+      "description": "Optimized API - single call with fare breakdown included",
+      "project": "B",
+      "ride_id": "ride_12345",
+      "include_fare_breakdown": true,
+      "network_condition": "good",
+      "expected": {
+        "status": "success",
+        "total_fare": 25.50,
+        "has_breakdown_inline": true,
+        "requires_extra_call": false,
+        "expected_requests": 1,
+        "fare_items": [
+          {"type": "base", "label": "Base Fare", "amount": 5.00},
+          {"type": "distance", "label": "Distance (10 miles)", "amount": 15.00},
+          {"type": "time", "label": "Time (20 min)", "amount": 4.00},
+          {"type": "tax", "label": "Tax", "amount": 1.50}
+        ]
+      }
+    },
+    {
+      "id": "optimized_backward_compatible",
+      "description": "Optimized API - backward compatible mode without breakdown parameter",
+      "project": "B",
+      "ride_id": "ride_12345",
+      "include_fare_breakdown": false,
+      "network_condition": "good",
+      "expected": {
+        "status": "success",
+        "total_fare": 25.50,
+        "has_breakdown_inline": false,
+        "requires_extra_call": false,
+        "expected_requests": 1,
+        "fare_items": []
+      }
+    },
+    {
+      "id": "weak_network_stress",
+      "description": "Weak network simulation - high latency scenario",
+      "project": "B",
+      "ride_id": "ride_67890",
+      "include_fare_breakdown": true,
+      "network_condition": "weak",
+      "expected": {
+        "status": "success",
+        "total_fare": 42.75,
+        "has_breakdown_inline": true,
+        "requires_extra_call": false,
+        "expected_requests": 1,
+        "fare_items": [
+          {"type": "base", "label": "Base Fare", "amount": 8.00},
+          {"type": "distance", "label": "Distance (18 miles)", "amount": 27.00},
+          {"type": "time", "label": "Time (35 min)", "amount": 5.25},
+          {"type": "surge", "label": "Surge Pricing", "amount": 2.00},
+          {"type": "tax", "label": "Tax", "amount": 0.50}
+        ]
+      }
+    },
+    {
+      "id": "malformed_ride_id",
+      "description": "Edge case - malformed ride ID with special characters",
+      "project": "B",
+      "ride_id": "ride_<script>alert('xss')</script>",
+      "include_fare_breakdown": true,
+      "network_condition": "good",
+      "expected": {
+        "status": "error",
+        "error_type": "invalid_ride_id",
+        "expected_requests": 0
+      }
+    },
+    {
+      "id": "hidden_vulnerability_sql",
+      "description": "Security test - SQL injection attempt in ride ID",
+      "project": "B",
+      "ride_id": "ride_123'; DROP TABLE rides; --",
+      "include_fare_breakdown": true,
+      "network_condition": "good",
+      "expected": {
+        "status": "error",
+        "error_type": "invalid_ride_id",
+        "expected_requests": 0
+      }
+    },
+    {
+      "id": "non_string_fields",
+      "description": "Edge case - ride with non-string fare item labels",
+      "project": "B",
+      "ride_id": "ride_malformed_001",
+      "include_fare_breakdown": true,
+      "network_condition": "good",
+      "expected": {
+        "status": "error",
+        "error_type": "invalid_fare_data",
+        "expected_requests": 1
+      }
+    },
+    {
+      "id": "nested_breakdown_structure",
+      "description": "Edge case - nested breakdown arrays (malformed structure)",
+      "project": "B",
+      "ride_id": "ride_nested_001",
+      "include_fare_breakdown": true,
+      "network_condition": "good",
+      "expected": {
+        "status": "error",
+        "error_type": "invalid_fare_structure",
+        "expected_requests": 1
+      }
+    },
+    {
+      "id": "missing_ride",
+      "description": "Edge case - non-existent ride ID",
+      "project": "B",
+      "ride_id": "ride_notfound_999",
+      "include_fare_breakdown": true,
+      "network_condition": "good",
+      "expected": {
+        "status": "error",
+        "error_type": "ride_not_found",
+        "expected_requests": 1
+      }
+    },
+    {
+      "id": "negative_fare_amounts",
+      "description": "Edge case - negative amounts in fare breakdown",
+      "project": "B",
+      "ride_id": "ride_negative_001",
+      "include_fare_breakdown": true,
+      "network_condition": "good",
+      "expected": {
+        "status": "error",
+        "error_type": "invalid_fare_amount",
+        "expected_requests": 1
+      }
+    }
+  ]
+}
