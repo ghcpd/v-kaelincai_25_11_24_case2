@@ -1,0 +1,215 @@
+{
+  "projectA": {
+    "total_cases": 4,
+    "pass_count": 4,
+    "average_latency_ms": 350.1824140548706,
+    "results": [
+      {
+        "id": "baseline_normal",
+        "status": "ok",
+        "latency_ms": 0.019311904907226562,
+        "metrics": {
+          "calls": 2
+        },
+        "pass": true,
+        "errors": [],
+        "payload_snapshot": {
+          "rideId": "ride_1001",
+          "totalFare": 30.0,
+          "fareBreakdown_requested_separately": true,
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "Base fare",
+              "amount": 20.0
+            },
+            {
+              "type": "service",
+              "label": "Service charge",
+              "amount": 5.0
+            },
+            {
+              "type": "tip",
+              "label": "Tip",
+              "amount": 5.0
+            }
+          ]
+        }
+      },
+      {
+        "id": "weak_network_stress",
+        "status": "ok",
+        "latency_ms": 1400.669813156128,
+        "metrics": {
+          "calls": 2
+        },
+        "pass": true,
+        "errors": [],
+        "payload_snapshot": {
+          "rideId": "ride_weak1",
+          "totalFare": 40.0,
+          "fareBreakdown_requested_separately": true,
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "Base fare",
+              "amount": 30.0
+            },
+            {
+              "type": "surcharge",
+              "label": "Airport",
+              "amount": 10.0
+            }
+          ]
+        }
+      },
+      {
+        "id": "malformed_input",
+        "status": "error",
+        "latency_ms": 0.026226043701171875,
+        "metrics": {
+          "calls": 0
+        },
+        "pass": true,
+        "errors": [],
+        "payload_snapshot": null
+      },
+      {
+        "id": "hidden_vulnerability_attempt",
+        "status": "ok",
+        "latency_ms": 0.01430511474609375,
+        "metrics": {
+          "calls": 2
+        },
+        "pass": true,
+        "errors": [],
+        "payload_snapshot": {
+          "rideId": "ride_malicious",
+          "totalFare": 15.0,
+          "fareBreakdown_requested_separately": true,
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "<script>alert('x')</script>",
+              "amount": 10.0
+            },
+            {
+              "type": "bonus",
+              "label": [
+                "Nested",
+                [
+                  "Array"
+                ]
+              ],
+              "amount": "5.0"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "projectB": {
+    "total_cases": 4,
+    "pass_count": 4,
+    "average_latency_ms": 175.15569925308228,
+    "results": [
+      {
+        "id": "optimized_normal",
+        "status": "ok",
+        "latency_ms": 0.042438507080078125,
+        "metrics": {
+          "data_access_calls": 1
+        },
+        "pass": true,
+        "errors": [],
+        "payload_snapshot": {
+          "rideId": "ride_1001",
+          "totalFare": 30.0,
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "Base fare",
+              "amount": 20.0
+            },
+            {
+              "type": "service",
+              "label": "Service charge",
+              "amount": 5.0
+            },
+            {
+              "type": "tip",
+              "label": "Tip",
+              "amount": 5.0
+            }
+          ],
+          "validation_errors": []
+        }
+      },
+      {
+        "id": "weak_network_stress",
+        "status": "ok",
+        "latency_ms": 700.5414962768555,
+        "metrics": {
+          "data_access_calls": 1
+        },
+        "pass": true,
+        "errors": [],
+        "payload_snapshot": {
+          "rideId": "ride_weak1",
+          "totalFare": 40.0,
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "Base fare",
+              "amount": 30.0
+            },
+            {
+              "type": "surcharge",
+              "label": "Airport",
+              "amount": 10.0
+            }
+          ],
+          "validation_errors": []
+        }
+      },
+      {
+        "id": "malformed_input",
+        "status": "error",
+        "latency_ms": 0.0095367431640625,
+        "metrics": {
+          "data_access_calls": 0
+        },
+        "pass": true,
+        "errors": [],
+        "payload_snapshot": null
+      },
+      {
+        "id": "hidden_vulnerability_attempt",
+        "status": "ok",
+        "latency_ms": 0.029325485229492188,
+        "metrics": {
+          "data_access_calls": 1
+        },
+        "pass": true,
+        "errors": [],
+        "payload_snapshot": {
+          "rideId": "ride_malicious",
+          "totalFare": 15.0,
+          "fareBreakdown": [
+            {
+              "type": "base",
+              "label": "&lt;script&gt;alert(&#x27;x&#x27;)&lt;/script&gt;",
+              "amount": 10.0
+            },
+            {
+              "type": "bonus",
+              "label": "Nested Array",
+              "amount": 5.0
+            }
+          ],
+          "validation_errors": []
+        }
+      }
+    ]
+  }
+}

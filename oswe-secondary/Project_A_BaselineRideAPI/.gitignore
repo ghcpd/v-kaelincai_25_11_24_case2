@@ -1,0 +1,10 @@
+# Ignore project build artifacts and runtime outputs
+.venv/
+__pycache__/
+*.py[cod]
+
+
+
+# Editor configs
+.vscode/
+.idea/

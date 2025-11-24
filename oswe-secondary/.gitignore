@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Editor files
+.vscode/
+.idea/
+.DS_Store
+
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# pytest
+.pytest_cache/
+
+# OS
+Thumbs.db
+
+# user environment files
+*.env
+
+# Ignore run-time temporary files
+*.tmp
+*.swp

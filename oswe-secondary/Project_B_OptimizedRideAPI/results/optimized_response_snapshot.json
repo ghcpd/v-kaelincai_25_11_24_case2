@@ -1,0 +1,22 @@
+{
+  "rideId": "ride_1001",
+  "totalFare": 30.0,
+  "fareBreakdown": [
+    {
+      "type": "base",
+      "label": "Base fare",
+      "amount": 20.0
+    },
+    {
+      "type": "service",
+      "label": "Service charge",
+      "amount": 5.0
+    },
+    {
+      "type": "tip",
+      "label": "Tip",
+      "amount": 5.0
+    }
+  ],
+  "validation_errors": []
+}

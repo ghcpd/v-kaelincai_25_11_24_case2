@@ -1,0 +1,37 @@
+[
+  {
+    "id": "baseline_normal",
+    "description": "Legacy clients: two call workflow; get ride (total only) then GET fare-items; expect total matches breakdown sum.",
+    "project": "A",
+    "input": { "rideId": "ride_1001" },
+    "expected": { "status": "ok", "totalFare": 30.0, "breakdown_present": true, "errors": [] }
+  },
+  {
+    "id": "optimized_normal",
+    "description": "Optimized: single call includeFareBreakdown=true should return breakdown inline and reconcile totals.",
+    "project": "B",
+    "input": { "rideId": "ride_1001", "includeFareBreakdown": true },
+    "expected": { "status": "ok", "totalFare": 30.0, "breakdown_present": true, "errors": [] }
+  },
+  {
+    "id": "weak_network_stress",
+    "description": "Simulated high-latency network: baseline suffers 2 round trips; optimized single round trip should show latency reduction.",
+    "project": "both",
+    "input": { "rideId": "ride_weak1", "simulate_network_ms": 700, "includeFareBreakdown": true },
+    "expected": { "status": "ok", "latency_reduction_ms_min": 250, "errors": [] }
+  },
+  {
+    "id": "malformed_input",
+    "description": "Payloads with malformed rideId (non-string or invalid format) should return 4xx error and not crash services.",
+    "project": "both",
+    "input": { "rideId": 12345 },
+    "expected": { "status": "error", "errors": ["invalid_ride_id"] }
+  },
+  {
+    "id": "hidden_vulnerability_attempt",
+    "description": "Ride has fare item with malicious label or nested arrays; system should sanitize and normalize into safe string and normalized breakdown.",
+    "project": "both",
+    "input": { "rideId": "ride_malicious", "includeFareBreakdown": true },
+    "expected": { "status": "ok", "totalFare": 15.0, "breakdown_present": true, "errors": [] }
+  }
+]
