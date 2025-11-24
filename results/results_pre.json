@@ -1,0 +1,90 @@
+{
+  "timestamp": "2025-11-24 16:50:43",
+  "summary": {
+    "total_scenarios": 3,
+    "passed": 3,
+    "failed": 0,
+    "pass_rate": "100.0%",
+    "total_latency_ms": 150,
+    "total_backend_calls": 3,
+    "avg_latency_per_scenario_ms": 50.0,
+    "edge_case_coverage": {
+      "high_latency": 1,
+      "network_stress": 1,
+      "security": 1,
+      "input_validation": 1,
+      "sql_injection_attempt": 1
+    }
+  },
+  "test_results": [
+    {
+      "scenario_id": "baseline_normal_fare",
+      "status": "PASSED",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": 200,
+        "rideId": "ride_001",
+        "distance": 5.2,
+        "duration": 1230,
+        "rideStatus": "completed",
+        "totalFare": 25.5,
+        "currency": "USD"
+      },
+      "metrics": {
+        "backend_calls": 1,
+        "total_latency_ms": 50,
+        "avg_latency_per_call_ms": 50.0
+      },
+      "test_duration_ms": 58.15768241882324,
+      "edge_case_flags": []
+    },
+    {
+      "scenario_id": "weak_network_baseline",
+      "status": "PASSED",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": 200,
+        "rideId": "ride_002",
+        "distance": 8.7,
+        "duration": 1890,
+        "rideStatus": "completed",
+        "totalFare": 38.75,
+        "currency": "USD"
+      },
+      "metrics": {
+        "backend_calls": 1,
+        "total_latency_ms": 50,
+        "avg_latency_per_call_ms": 50.0
+      },
+      "test_duration_ms": 50.597190856933594,
+      "edge_case_flags": [
+        "high_latency",
+        "network_stress"
+      ]
+    },
+    {
+      "scenario_id": "malformed_ride_id",
+      "status": "PASSED",
+      "passed": true,
+      "errors": [],
+      "response": {
+        "status": 400,
+        "error_code": "INVALID_RIDE_ID",
+        "error_message": "Ride ID contains invalid characters"
+      },
+      "metrics": {
+        "backend_calls": 1,
+        "total_latency_ms": 50,
+        "avg_latency_per_call_ms": 50.0
+      },
+      "test_duration_ms": 50.6136417388916,
+      "edge_case_flags": [
+        "security",
+        "input_validation",
+        "sql_injection_attempt"
+      ]
+    }
+  ]
+}
